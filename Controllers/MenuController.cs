@@ -149,6 +149,7 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Controllers
                         item.DateAdded = DateTime.UtcNow;
                         item.ModifiedByUserId = User.UserID;
                         item.DateModified = DateTime.UtcNow;
+                        item.ExpirationDate = (DateTime)System.Data.SqlTypes.SqlDateTime.MinValue;
 
                         _menuDataRepository.CreateItem(item);
                         Notifications.Instance.SendItemAddedNotification(item);
@@ -164,6 +165,11 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Controllers
                         existingItem.Price = item.Price;
                         existingItem.Name = item.Name;
                         existingItem.Desc = item.Desc;
+                        existingItem.ExpirationDate = (DateTime)System.Data.SqlTypes.SqlDateTime.MinValue;
+                        if (item.ExpirationDate > (DateTime)System.Data.SqlTypes.SqlDateTime.MinValue)
+                        {
+                            existingItem.ExpirationDate = item.ExpirationDate;
+                        }
 
                         _menuDataRepository.UpdateItem(existingItem);
                     }

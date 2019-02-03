@@ -1,3 +1,13 @@
 ﻿IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DotNetNuclear_RestaurantMenuMVC_Item]') AND type in (N'U'))
 	DROP TABLE {databaseOwner}[{objectQualifier}DotNetNuclear_RestaurantMenuMVC_Item]
 GO
+
+/* Remove the scheduled task */
+DECLARE @ScheduleID INT
+SELECT TOP 1 @ScheduleID = ScheduleID FROM {databaseOwner}[{objectQualifier}Schedule] 
+WHERE TypeFullName = 'DotNetNuclear.Modules.RestaurantMenuMVC.Schedule.ExpireItemsTask,DotNetNuclear.RestaurantMenu.Mvc';
+IF (@ScheduleID > 0) 
+BEGIN
+	DELETE FROM {databaseOwner}[{objectQualifier}ScheduleHistory] WHERE ScheduleID = @ScheduleID
+	DELETE FROM {databaseOwner}[{objectQualifier}Schedule] WHERE ScheduleID = @ScheduleID
+END

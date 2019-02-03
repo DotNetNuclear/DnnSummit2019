@@ -1,0 +1,38 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+IF NOT EXISTS(SELECT 1 FROM sys.columns 
+          WHERE Name = N'ExpirationDate'
+          AND Object_ID = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DotNetNuclear_RestaurantMenuMVC_Item]'))
+BEGIN
+	ALTER TABLE {databaseOwner}[{objectQualifier}DotNetNuclear_RestaurantMenuMVC_Item]
+		ADD [ExpirationDate] [datetime] NULL 
+END
+GO
+
+IF ((SELECT COUNT(*) FROM {databaseOwner}[{objectQualifier}Schedule] WHERE FriendlyName='Restaurant Menu Item Expiration Task')=0)
+BEGIN
+	INSERT INTO {databaseOwner}[{objectQualifier}Schedule]([TypeFullName],[TimeLapse],[TimeLapseMeasurement],
+		[RetryTimeLapse],[RetryTimeLapseMeasurement],[RetainHistoryNum],[AttachToEvent],
+		[CatchUpEnabled],[Enabled],[ObjectDependencies],[Servers],[CreatedByUserID],
+		[CreatedOnDate],[LastModifiedByUserID],[LastModifiedOnDate],[FriendlyName])
+	VALUES(
+		'DotNetNuclear.Modules.RestaurantMenuMVC.Schedule.ExpireItemsTask,DotNetNuclear.RestaurantMenu.Mvc',
+		12,'h',6,'h',10,'',0,1,'',
+		NULL,NULL,NULL,NULL,NULL,'Restaurant Menu Item Expiration Task'
+	)
+END
+GO
+
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

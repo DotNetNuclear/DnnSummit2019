@@ -44,6 +44,10 @@
                 </label>
             </div>
         </div>
+        <div class="form-group">
+            <label for="ExpirationDate">@Dnn.LocalizeString("lblExpirationDate")</label>
+            @Html.TextBoxFor(m => m.ExpirationDate, "{0:yyyy-MM-dd}", new { @class = "hasDatepicker", type = "date" })
+        </div>
 
         @Html.HiddenFor(m => m.ModuleId)
         @Html.HiddenFor(m => m.MenuItemId)
@@ -81,6 +85,7 @@
 <script type="text/javascript">
     Dropzone.autoDiscover = false; // keep this line if you have multiple dropzones in the same page
     $(function () {
+        var dp = $(".hasDatepicker").datepicker();
 
         $("#dZUpload").dropzone({
             acceptedFiles: "image/jpeg,image/png,image/gif",
