@@ -24,5 +24,6 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Components
         IEnumerable<IMenuItem> GetAllItemsByDate(int moduleId, DateTime beginDate);
         IMenuItem GetItem(int itemId, int moduleId);
         void UpdateItem(IMenuItem t);
+        Dictionary<string, int> GetUrlSlugTable(int moduleId);
     }
 }

@@ -69,6 +69,17 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Components
             return t;
         }
 
+        public Dictionary<string, int> GetUrlSlugTable(int moduleId)
+        {
+            int cacheTimout = 3600;
+            string cacheKey = $"DotNetNuclearRestaurantMenuCache_{moduleId}";
+
+            var cacheItemArgs = new CacheItemArgs(cacheKey, cacheTimout);
+
+            return DataCache.GetCachedData<Dictionary<string, int>>(cacheItemArgs, c => createUrlSlugTable(moduleId));
+        }
+
+
         public IMenuItem GetItem(int itemId, int moduleId)
         {
             IMenuItem t;
@@ -87,6 +98,11 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Components
                 var rep = ctx.GetRepository<MenuItem>();
                 rep.Update((MenuItem)t);
             }
+        }
+
+        private Dictionary<string, int> createUrlSlugTable(int moduleId)
+        {
+            return GetItems(moduleId).Where(i => !String.IsNullOrEmpty(i.UrlSlug)).ToDictionary(k => k.UrlSlug, v => v.MenuItemId);
         }
 
     }

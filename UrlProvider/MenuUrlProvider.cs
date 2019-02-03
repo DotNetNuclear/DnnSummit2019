@@ -94,11 +94,10 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.UrlProvider
                     if (!string.IsNullOrEmpty(pathSlug) && MenuModuleId > 0)
                     {
                         var menuRepo = new MenuItemRepository();
-                        var moduleItems = menuRepo.GetItems(MenuModuleId);
-                        var menuItem = moduleItems.FirstOrDefault(i => i.UrlSlug.Equals(pathSlug, StringComparison.CurrentCultureIgnoreCase));
-                        if (menuItem != null)
+                        var htSlugs = menuRepo.GetUrlSlugTable(MenuModuleId);
+                        if (htSlugs.ContainsKey(pathSlug))
                         {
-                            result = $"tabid={tabId}&controller=Menu&action=Detail&moduleId={MenuModuleId}&itemId={menuItem.MenuItemId}";
+                            result = $"tabid={tabId}&controller=Menu&action=Detail&moduleId={MenuModuleId}&itemId={htSlugs[pathSlug]}";
                         }
                         else
                         {
