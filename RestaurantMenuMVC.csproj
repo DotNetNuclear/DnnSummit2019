@@ -150,6 +150,17 @@
     <Compile Include="Schedule\ExpireItemsTask.cs" />
     <Compile Include="Services\Controllers\ItemNotificationController.cs" />
     <Compile Include="Services\RestaurantMenuApiRoutes.cs" />
+    <Compile Include="UrlProvider\MenuUrlProvider.cs" />
+    <Compile Include="UrlProvider\ProviderSettingsBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UrlProvider\Settings.ascx.cs">
+      <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UrlProvider\Settings.ascx.designer.cs">
+      <DependentUpon>Settings.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documentation\Documentation.css" />
@@ -189,6 +200,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UrlProvider\Settings.ascx" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
@@ -208,6 +220,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="InstallScripts\01.00.03.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UrlProvider\App_LocalResources\Settings.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="InstallScripts\01.00.04.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\Detail.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

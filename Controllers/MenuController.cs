@@ -82,6 +82,19 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Controllers
             return RedirectToDefaultRoute();
         }
 
+        public ActionResult Detail(int itemId)
+        {
+            string culSetting = "en-US";
+            var item = _menuDataRepository.GetItem(itemId, CurrentModuleId);
+            if (ModuleContext.Settings.ContainsKey("RestaurantMenu_CurrencyCulture"))
+            {
+                if (!String.IsNullOrEmpty(ModuleContext.Settings["RestaurantMenu_CurrencyCulture"].ToString()))
+                    culSetting = ModuleContext.Settings["RestaurantMenu_CurrencyCulture"].ToString();
+            }
+            ViewBag.Culture = new CultureInfo(culSetting);
+            return View(item);
+        }
+
         public JsonResult Upload()
         {
             string imageUrl = string.Empty;
@@ -170,6 +183,7 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Controllers
                         {
                             existingItem.ExpirationDate = item.ExpirationDate;
                         }
+                        existingItem.UrlSlug = item.UrlSlug;
 
                         _menuDataRepository.UpdateItem(existingItem);
                     }

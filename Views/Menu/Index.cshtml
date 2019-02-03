@@ -51,7 +51,9 @@
                 </div>
                 <div class="col-sm-9">
                     <div class="result-content">
-                        <h3>@item.Name</h3>
+                        <a href="@Url.Action("Detail", "Menu", new {itemId = item.MenuItemId})">
+                            <h3>@item.Name</h3>
+                        </a>
                         <div class="result-content-Info">
                             @item.Desc
                         </div>

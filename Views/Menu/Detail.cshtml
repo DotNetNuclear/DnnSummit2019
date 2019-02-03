@@ -1,0 +1,53 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DotNetNuclear.Modules.RestaurantMenuMVC.Models.MenuItem>
+
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@using DotNetNuke.Web.Mvc.Helpers
+
+@{
+    var moduleId = Dnn.ModuleContext.ModuleId;
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/DotNetNuclear/RestaurantMenu/Resources/bootstrap/css/bootstrap.min.css");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/DotNetNuclear/RestaurantMenu/Resources/bootstrap/js/bootstrap.min.js", 20);
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/DotNetNuclear/RestaurantMenu/Resources/module.css");
+}
+
+
+<div id="menuitems-wrap-@moduleId" class="container">
+    @if (Model == null)
+    {
+        <div id="noresults-@moduleId" class="dnnFormMessage dnnFormInfo">
+            <span>@Dnn.LocalizeString("NoItemsDefined")</span>
+        </div>
+    }
+    else
+    {
+        <div class="row shop">
+            <div class="col-md-6">
+                <img src="@Model.ImageUrl" title="@Model.Name" alt="@Model.Name" />
+            </div>
+            <div class="col-md-6">
+                <div class="summary entry-summary">
+                    <h1>@Model.Name</h1>
+                    <p class="item-price"><span>@Model.Price.ToString("c", ViewBag.Culture)</span></p>
+                    <p>@Model.Desc</p>
+                    <div class="item-meta">
+                        @if (Model.IsDailySpecial || Model.IsVegetarian)
+                        {
+                        <span class="posted_in">
+                            Categories:
+                            @if (Model.IsDailySpecial)
+                            {
+                                <a rel="tag" href="#">Daily Special</a>
+                            }
+                            &nbsp;
+                            @if (Model.IsVegetarian)
+                            {
+                                <a rel="tag" href="#">Vegetarian</a>
+                            }
+                        </span> 
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

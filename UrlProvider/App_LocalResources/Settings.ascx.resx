@@ -117,67 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddItem.Text" xml:space="preserve">
-    <value>Add New Item</value>
+  <data name="lblMenuDetailPage.Text" xml:space="preserve">
+    <value>Menu Detail Page</value>
   </data>
-  <data name="BasicSettings.Text" xml:space="preserve">
-    <value>RestaurantMenu Item Basic Settings</value>
-  </data>
-  <data name="Cancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="CollapseAll.Text" xml:space="preserve">
-    <value>Collapse All</value>
-  </data>
-  <data name="DeleteItem.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="EditItem.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="ExpandAll.Text" xml:space="preserve">
-    <value>Expand All</value>
-  </data>
-  <data name="lblAssignedUser.Text" xml:space="preserve">
-    <value>Assigned User</value>
-  </data>
-  <data name="lblDescription.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="lblName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Submit.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="NoItemsDefined.Text" xml:space="preserve">
-    <value>The menu is empty. Click Add Item from the context menu to start adding items.</value>
-  </data>
-  <data name="valEditName.Text" xml:space="preserve">
-    <value>Name is required</value>
-  </data>
-  <data name="lblIsDailySpecial.Text" xml:space="preserve">
-    <value>Daily Special?</value>
-  </data>
-  <data name="lblIsVegetarian.Text" xml:space="preserve">
-    <value>Vegetarian?</value>
-  </data>
-  <data name="lblImageUrl.Text" xml:space="preserve">
-    <value>Image</value>
-  </data>
-  <data name="lblOtherOptions.Text" xml:space="preserve">
-    <value>Other Options</value>
-  </data>
-  <data name="lblPrice.Text" xml:space="preserve">
-    <value>Price</value>
-  </data>
-  <data name="DeleteConfirm.Text" xml:space="preserve">
-    <value>Are you sure you want to delete this item?</value>
-  </data>
-  <data name="lblExpirationDate.Text" xml:space="preserve">
-    <value>Expiration Date</value>
-  </data>
-  <data name="lblSlug.Text" xml:space="preserve">
-    <value>Url Slug</value>
+  <data name="UrlProviderSettings.Text" xml:space="preserve">
+    <value>Restaurant Menu Url Provider Settings</value>
   </data>
 </root>

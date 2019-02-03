@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="DotNetNuclear.RestaurantMenu.Mvc" type="Module" version="01.00.03">
+    <package name="DotNetNuclear.RestaurantMenu.Mvc" type="Module" version="01.00.04">
       <friendlyName>Restaurant Menu (MVC)</friendlyName>
       <description>DotNetNuclear RestaurantMenu MVC module example. This module provides users with the ability to create a dynamic restaurant menu.</description>
       <iconFile>~/DesktopModules/MVC/DotNetNuclear/RestaurantMenu/Resources/images/extension.png</iconFile>
@@ -22,6 +22,11 @@
         <component type="Script">
           <scripts>
             <basePath>DesktopModules\MVC\DotNetNuclear\RestaurantMenu</basePath>
+            <script type="Install">
+              <path>InstallScripts</path>
+              <name>01.00.04.SqlDataProvider</name>
+              <version>01.00.04</version>
+            </script>
             <script type="Install">
               <path>InstallScripts</path>
               <name>01.00.03.SqlDataProvider</name>
@@ -112,6 +117,18 @@
               <path>bin</path>
             </assembly>
           </assemblies>
+        </component>
+
+        <component type="UrlProvider">
+          <urlProvider>
+            <name>Restaurant Menu Url Provider</name>
+            <type>DotNetNuclear.Modules.RestaurantMenuMVC.UrlProvider.MenuUrlProvider</type>
+            <settingsControlSrc>DesktopModules/MVC/DotNetNuclear/RestaurantMenu/UrlProvider/Settings.ascx</settingsControlSrc>
+            <redirectAllUrls>false</redirectAllUrls>
+            <replaceAllUrls>false</replaceAllUrls>
+            <rewriteAllUrls>true</rewriteAllUrls>
+            <desktopModule></desktopModule>
+          </urlProvider>
         </component>
 
       </components>

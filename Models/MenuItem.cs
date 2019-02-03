@@ -85,6 +85,10 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Models
         [XmlElement]
         public DateTime ExpirationDate { get; set; }
 
+        [Required]
+        [XmlElement]
+        public string UrlSlug { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (_menuItemLookupRepo == null)

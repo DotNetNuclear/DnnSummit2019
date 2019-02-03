@@ -18,6 +18,11 @@
             @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Name, String.Empty, new { @class = "text-danger field-validation-error" })
         </div>
+        <div class="form-group @(Html.ViewData.ModelState.IsValidField("UrlSlug") ? null : "has-error" )">
+            <label for="Name">@Dnn.LocalizeString("lblSlug")</label>
+            @Html.TextBoxFor(m => m.UrlSlug, new { @class = "form-control", @style = "max-width: 200px;" })
+            @Html.ValidationMessageFor(m => m.UrlSlug, String.Empty, new { @class = "text-danger field-validation-error" })
+        </div>
         <div class="form-group">
             <img id="imgItem" src="@Model.ImageUrl" class="menu-image" />
             <a data-toggle="modal" data-target="#dropzonemodal" href="#dropzonemodal" class="btn btn-success upload-btn"><span class="glyphicon glyphicon-upload"></span> Upload Image</a>

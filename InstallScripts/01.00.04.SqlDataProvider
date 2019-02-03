@@ -1,0 +1,23 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+IF NOT EXISTS(SELECT 1 FROM sys.columns 
+          WHERE Name = N'UrlSlug'
+          AND Object_ID = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DotNetNuclear_RestaurantMenuMVC_Item]'))
+BEGIN
+	ALTER TABLE {databaseOwner}[{objectQualifier}DotNetNuclear_RestaurantMenuMVC_Item]
+		ADD [UrlSlug] [nvarchar](255) NULL 
+END
+GO
+
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

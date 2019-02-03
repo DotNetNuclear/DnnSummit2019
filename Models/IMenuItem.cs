@@ -33,5 +33,6 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Models
         DateTime DateModified { get; set; }
         int Popularity { get; set; }
         DateTime ExpirationDate { get; set; }
+        string UrlSlug { get; set; }
     }
 }
