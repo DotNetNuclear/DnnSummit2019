@@ -21,6 +21,7 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Components
         void DeleteItem(int itemId, int moduleId);
         void DeleteItem(IMenuItem t);
         IEnumerable<IMenuItem> GetItems(int moduleId);
+        IEnumerable<IMenuItem> GetAllItemsByDate(int moduleId, DateTime beginDate);
         IMenuItem GetItem(int itemId, int moduleId);
         void UpdateItem(IMenuItem t);
     }

@@ -52,6 +52,7 @@
             <businessControllerClass>DotNetNuclear.Modules.RestaurantMenuMVC.Components.FeatureController</businessControllerClass>
             <supportedFeatures>
               <supportedFeature type="Portable" />
+              <supportedFeature type="Searchable" />
             </supportedFeatures>
             <moduleDefinitions>
               <moduleDefinition>

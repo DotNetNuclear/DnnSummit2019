@@ -22,7 +22,7 @@ using System.Linq;
 namespace DotNetNuclear.Modules.RestaurantMenuMVC.Components
 {
 
-    public class FeatureController: IPortable
+    public class FeatureController: ModuleSearchBase, IPortable
     {
         public const string BASEMODULEPATH = @"/DesktopModules/MVC/DotNetNuclear/RestaurantMenu";
         public const string DESKTOPMODULE_FRIENDLYNAME = "Restaurant Menu (MVC)";
@@ -95,6 +95,78 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Components
             {
                 DotNetNuke.Services.Exceptions.Exceptions.LogException(ex);
             }
+        }
+
+        #endregion
+
+        #region ModuleSearchBase
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="moduleInfo"></param>
+        /// <param name="beginDate"></param>
+        /// <returns></returns>
+        public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo moduleInfo, DateTime beginDate)
+        {
+            IList<SearchDocument> searchContent = new List<SearchDocument>();
+
+            try
+            {
+                IMenuItemRepository dalCtrl = new MenuItemRepository();
+                var itemData = dalCtrl.GetAllItemsByDate(moduleInfo.ModuleID, beginDate);
+
+                foreach (var item in itemData.ToList())
+                {
+                    SearchDocument doc = null;
+                    // Convert item to search document
+                    doc = convertItemToSearchDoc(moduleInfo, item);
+                    if (doc != null)
+                        searchContent.Add(doc);
+                }
+            }
+            catch (Exception ex)
+            {
+                DotNetNuke.Services.Exceptions.Exceptions.LogException(ex);
+            }
+
+            return searchContent;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="moduleInfo"></param>
+        /// <param name="item"></param>
+        private SearchDocument convertItemToSearchDoc(ModuleInfo moduleInfo, IMenuItem item)
+        {
+            int tab = 0;
+            TabController tCtrl = new TabController();
+            var moduleTabs = tCtrl.GetTabsByModuleID(item.ModuleId);
+            if (moduleTabs != null && moduleTabs.Count > 0)
+            {
+                tab = moduleTabs.First().Key;
+            }
+
+            SearchDocument doc = new SearchDocument
+            {
+                UniqueKey = String.Format("{0}_{1}_{2}",
+                        moduleInfo.ModuleDefinition.DefinitionName, moduleInfo.PortalID, item.MenuItemId),
+                AuthorUserId = item.AddedByUserId,
+                ModifiedTimeUtc = item.DateModified.ToUniversalTime(),
+                Title = item.Name,
+                Body = item.Desc,
+                Url = "",
+                CultureCode = "en-US",
+                Description = "DotNetNuclear Restaurant Menu Item",
+                IsActive = true,
+                ModuleDefId = moduleInfo.ModuleDefID,
+                ModuleId = item.ModuleId,
+                PortalId = moduleInfo.PortalID,
+                TabId = tab
+            };
+
+            return doc;
         }
 
         #endregion

@@ -58,6 +58,17 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Components
             return t;
         }
 
+        public IEnumerable<IMenuItem> GetAllItemsByDate(int moduleId, DateTime beginDate)
+        {
+            IEnumerable<IMenuItem> t;
+            using (IDataContext ctx = DataContext.Instance())
+            {
+                var rep = ctx.GetRepository<MenuItem>();
+                t = rep.Find("WHERE ModuleId=@0 AND DateModified >= @1", moduleId, beginDate);
+            }
+            return t;
+        }
+
         public IMenuItem GetItem(int itemId, int moduleId)
         {
             IMenuItem t;
