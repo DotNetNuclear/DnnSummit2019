@@ -27,7 +27,7 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Models
     [Cacheable("RestaurantMenuMVC_Items", CacheItemPriority.Default, 20)]
     //scope the objects to the ModuleId of a module on a page (or copy of a module on a page)
     [Scope("ModuleId")]
-    public class MenuItem : IMenuItem
+    public class MenuItem : IMenuItem, IValidatableObject
     {
         IMenuItemRepository _menuItemLookupRepo;
 
@@ -79,6 +79,21 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Models
         [XmlIgnore]
         public DateTime DateModified { get; set; }
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (_menuItemLookupRepo == null)
+            {
+                _menuItemLookupRepo = new MenuItemRepository();
+            }
+
+            var items = _menuItemLookupRepo.GetItems(ModuleId);
+            bool nameExistsOnOtherItem = items.Any(i => i.MenuItemId != MenuItemId &&
+                                    i.Name.Equals(Name, StringComparison.CurrentCultureIgnoreCase));
+            if (nameExistsOnOtherItem)
+            {
+                yield return new ValidationResult("An item with this name already exists.", new[] { nameof(Name) });
+            }
+        }
     }
 
 }

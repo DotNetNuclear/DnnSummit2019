@@ -52,5 +52,32 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Tests
             Assert.IsTrue(model != null && model.ImageUrl.EndsWith("noimage.png"));
         }
 
+        [TestMethod]
+        public void Edit_SavingItemWithSameName_DuplicateNameNotAllowed()
+        {
+            //arrange
+            mockStore = _MockStores.ItemRepositoryFake();
+            mockStore.Object.CreateItem(new MenuItem { MenuItemId = 1, ModuleId = 1, Name = "Item 1", Desc = "Item 1 Description", AddedByUserId = 0, DateAdded = DateTime.Now.AddDays(-1), ModifiedByUserId = 0, DateModified = DateTime.Now });
+            mockStore.Object.CreateItem(new MenuItem { MenuItemId = 2, ModuleId = 1, Name = "Item 2", Desc = "Item 2 Description", AddedByUserId = 0, DateAdded = DateTime.Now.AddDays(-1), ModifiedByUserId = 0, DateModified = DateTime.Now });
+            mockStore.Object.CreateItem(new MenuItem { MenuItemId = 3, ModuleId = 1, Name = "Item 3", Desc = "Item 3 Description", AddedByUserId = 0, DateAdded = DateTime.Now.AddDays(-1), ModifiedByUserId = 0, DateModified = DateTime.Now });
+            mockStore.Object.CreateItem(new MenuItem { MenuItemId = 4, ModuleId = 1, Name = "Item 4", Desc = "Item 4 Description", AddedByUserId = 0, DateAdded = DateTime.Now.AddDays(-1), ModifiedByUserId = 0, DateModified = DateTime.Now });
+
+            //act
+            var model = new MenuItem(mockStore.Object)
+            {
+                MenuItemId = -1,
+                ModuleId = 1,
+                Name = "Item 2"
+            };
+
+            var validationContext = new ValidationContext(model);
+            var results = model.Validate(validationContext);
+
+            //assert
+            Assert.AreEqual(results.Count(), 1);
+            Assert.AreEqual(results.First().ErrorMessage, "An item with this name already exists.");
+        }
+
+
     }
 }
