@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MenuItemRepository.cs" />
+    <Compile Include="Components\PortableItems.cs" />
     <Compile Include="Models\IMenuItem.cs" />
     <Compile Include="Components\IMenuItemRepository.cs" />
     <Compile Include="Components\FeatureController.cs" />
