@@ -151,6 +151,7 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Controllers
                         item.DateModified = DateTime.UtcNow;
 
                         _menuDataRepository.CreateItem(item);
+                        Notifications.Instance.SendItemAddedNotification(item);
                     }
                     else
                     {

@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MenuItemRepository.cs" />
+    <Compile Include="Components\Notifications.cs" />
     <Compile Include="Components\PortableItems.cs" />
     <Compile Include="Models\IMenuItem.cs" />
     <Compile Include="Components\IMenuItemRepository.cs" />
@@ -146,6 +147,8 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Controllers\ItemNotificationController.cs" />
+    <Compile Include="Services\RestaurantMenuApiRoutes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documentation\Documentation.css" />
@@ -195,6 +198,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Menu.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="InstallScripts\01.00.02.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\SharedResources.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

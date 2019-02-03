@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="DotNetNuclear.RestaurantMenu.Mvc" type="Module" version="01.00.01">
+    <package name="DotNetNuclear.RestaurantMenu.Mvc" type="Module" version="01.00.02">
       <friendlyName>Restaurant Menu (MVC)</friendlyName>
       <description>DotNetNuclear RestaurantMenu MVC module example. This module provides users with the ability to create a dynamic restaurant menu.</description>
       <iconFile>~/DesktopModules/MVC/DotNetNuclear/RestaurantMenu/Resources/images/extension.png</iconFile>
@@ -22,6 +22,11 @@
         <component type="Script">
           <scripts>
             <basePath>DesktopModules\MVC\DotNetNuclear\RestaurantMenu</basePath>
+            <script type="Install">
+              <path>InstallScripts</path>
+              <name>01.00.02.SqlDataProvider</name>
+              <version>01.00.02</version>
+            </script>
             <script type="Install">
               <path>InstallScripts</path>
               <name>01.00.00.SqlDataProvider</name>

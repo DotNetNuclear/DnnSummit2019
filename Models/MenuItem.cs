@@ -79,6 +79,9 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Models
         [XmlIgnore]
         public DateTime DateModified { get; set; }
 
+        [XmlElement]
+        public int Popularity { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (_menuItemLookupRepo == null)

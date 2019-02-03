@@ -27,6 +27,8 @@ namespace DotNetNuclear.Modules.RestaurantMenuMVC.Components
         public const string BASEMODULEPATH = @"/DesktopModules/MVC/DotNetNuclear/RestaurantMenu";
         public const string DESKTOPMODULE_FRIENDLYNAME = "Restaurant Menu (MVC)";
 
+        public const string NOTIFICATION_ITEMADDED = "DNNUCLEAR_MenuItemAdded";
+
         #region IPortable Implementation
 
         /// -----------------------------------------------------------------------------
